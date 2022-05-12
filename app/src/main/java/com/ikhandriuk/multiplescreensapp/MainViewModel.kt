@@ -12,10 +12,17 @@ class MainViewModel(private val repositoryAuthorization: AuthorizationRepository
 
     val myResponse: MutableLiveData<Response<AuthorizationItem>> = MutableLiveData()
 
+
     fun setAuthorization(login:String,pass:String) {
         viewModelScope.launch {
             val response = repositoryAuthorization.setAuthorization(login, pass)
             myResponse.value = response
+        }
+    }
+
+    fun goLogout(code:String) {
+        viewModelScope.launch {
+            //
         }
     }
 

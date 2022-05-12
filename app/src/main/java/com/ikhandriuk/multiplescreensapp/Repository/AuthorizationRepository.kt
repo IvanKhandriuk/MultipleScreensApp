@@ -9,4 +9,8 @@ class AuthorizationRepository {
     suspend fun setAuthorization(login: String,pass: String):Response<AuthorizationItem>{
         return RetrofitInstance.API.setAuthorization(login, pass)
     }
+
+    suspend fun goLogOut(code: String){
+
+    }
 }

@@ -25,6 +25,8 @@ class LogIn : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
 
+        supportActionBar?.hide()
+
         edtLogIn=findViewById(R.id.edtLogin)
         edtPassword=findViewById(R.id.edtPass)
         btnLogIn=findViewById(R.id.btnLogIn)
@@ -41,20 +43,19 @@ class LogIn : AppCompatActivity() {
             val encodePass: String = Base64.getEncoder().encodeToString(myPassWord.toByteArray())
             viewModel.setAuthorization(myLogIn, encodePass)
 
+
             viewModel.myResponse.observe(this, androidx.lifecycle.Observer{ response ->
                 if (response.isSuccessful) {
-                    val intent=Intent(this@LogIn,MainActivity::class.java)
                     Log.d("Response", response.body()?.code.toString())
                     Log.d("Response", response.body()?.result.toString())
+                    val intent=Intent(this@LogIn,MainActivity::class.java)
+                    finish()
+                    startActivity(intent)
                 } else {
                     Log.d("Error",response.code().toString())
                     Toast.makeText(this@LogIn,"Wrong password or login",Toast.LENGTH_SHORT).show()
                 }
             })
         }
-
         }
-    private fun login(email: String, password: String){
-        // logic
-    }
     }

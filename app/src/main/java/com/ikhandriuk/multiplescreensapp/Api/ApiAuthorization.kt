@@ -11,4 +11,5 @@ interface ApiAuthorization {
     suspend fun setAuthorization (
         @Query("login")login: String,
         @Query("pass")pass: String):Response <AuthorizationItem>
+
 }
