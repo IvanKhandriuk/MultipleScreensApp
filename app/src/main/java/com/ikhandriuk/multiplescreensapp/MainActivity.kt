@@ -14,14 +14,14 @@ import com.ikhandriuk.multiplescreensapp.Repository.AuthorizationRepository
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewModel: MainViewModel
-    lateinit var getData: LogIn
-    private lateinit var txtResponse:TextView
-    private lateinit var btnGetCode:Button
-
+    private lateinit var viewModel:SecondViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        val authCode=intent.getStringExtra("RsCode")
+            Log.d("Response_code: ", authCode.toString())
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -31,29 +31,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
-        txtResponse=findViewById<TextView>(R.id.txtResponse)
-        val authorizationRepository = AuthorizationRepository()
-        val viewModelFactory=MainViewModelFactory(authorizationRepository)
-
-        viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
-        val responseCode =viewModel.myResponse.value?.body()?.code
-
-
-
-
-        btnGetCode.setOnClickListener {
-            viewModel.myResponse.observe(this, androidx.lifecycle.Observer { response ->
-                if (response.isSuccessful) {
-                    txtResponse.text = getData.viewModel.myResponse.value?.body()?.code.toString()
-                    Log.d("ResponseMain code", txtResponse.toString())
-                } else {
-                    Log.d("Error", response.code().toString())
-                }
-            })
-        }
-
         if(item.itemId==R.id.logout){
-            //signout
+            val authCode=intent.getStringExtra("RsCode")
+            viewModel.logOut(authCode.toString())
+            val outCode=viewModel.logOutResponse.value?.body()?.logOutCode
+            Log.d("Response code", outCode.toString())
             finish()
             val intent=Intent(this@MainActivity, LogIn::class.java)
             startActivity(intent)

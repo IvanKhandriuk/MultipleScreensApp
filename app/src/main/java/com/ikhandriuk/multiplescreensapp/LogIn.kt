@@ -41,17 +41,16 @@ class LogIn : AppCompatActivity() {
 
             val myLogIn = edtLogIn.text.toString()
             val myPassWord = edtPassword.text.toString()
-            Log.d("name", myLogIn)
             val encodePass: String = Base64.getEncoder().encodeToString(myPassWord.toByteArray())
             viewModel.setAuthorization(myLogIn, encodePass)
 
             viewModel.myResponse.observe(this, androidx.lifecycle.Observer{ response ->
                 if (response.isSuccessful) {
-
                     val responseCode =viewModel.myResponse.value?.body()?.code
                     Log.d("RsCode", response.body()?.code.toString())
                     Log.d("Response result", response.body()?.result.toString())
                     val intent=Intent(this@LogIn,MainActivity::class.java)
+                    intent.putExtra("RsCode",viewModel.myResponse.value?.body()?.code)
                     finish()
                     startActivity(intent)
 
