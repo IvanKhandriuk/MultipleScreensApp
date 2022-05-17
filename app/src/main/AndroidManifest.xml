@@ -11,7 +11,7 @@
         android:theme="@style/Theme.MultipleScreensApp">
 
         <activity
-            android:name=".LogIn"
+            android:name=".Screens.LogIn.LogIn"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -20,7 +20,7 @@
         </activity>
 
         <activity
-            android:name=".MainActivity"
+            android:name=".Screens.FirstScreen.FirstScreen"
             android:exported="true"/>
     </application>
 

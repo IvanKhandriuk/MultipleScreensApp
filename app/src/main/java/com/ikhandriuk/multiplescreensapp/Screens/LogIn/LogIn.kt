@@ -1,4 +1,4 @@
-package com.ikhandriuk.multiplescreensapp
+package com.ikhandriuk.multiplescreensapp.Screens.LogIn
 
 import android.content.Intent
 import android.os.Build
@@ -10,7 +10,11 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
+import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModel
+import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModelFactory
+import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.AuthorizationRepository
+import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.FirstScreen
 import java.util.*
 
 class LogIn : AppCompatActivity() {
@@ -19,7 +23,6 @@ class LogIn : AppCompatActivity() {
     private lateinit var edtLogIn: EditText
     private lateinit var edtPassword: EditText
     private lateinit var btnLogIn: Button
-    val TAG = "MyActivity"
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,7 +37,7 @@ class LogIn : AppCompatActivity() {
 
 
         val authorizationRepository = AuthorizationRepository()
-        val viewModelFactory=MainViewModelFactory(authorizationRepository)
+        val viewModelFactory= MainViewModelFactory(authorizationRepository)
         viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
 
         btnLogIn.setOnClickListener {
@@ -49,7 +52,7 @@ class LogIn : AppCompatActivity() {
                     val responseCode =viewModel.myResponse.value?.body()?.code
                     Log.d("RsCode", response.body()?.code.toString())
                     Log.d("Response result", response.body()?.result.toString())
-                    val intent=Intent(this@LogIn,MainActivity::class.java)
+                    val intent=Intent(this@LogIn, FirstScreen::class.java)
                     intent.putExtra("RsCode",viewModel.myResponse.value?.body()?.code)
                     finish()
                     startActivity(intent)

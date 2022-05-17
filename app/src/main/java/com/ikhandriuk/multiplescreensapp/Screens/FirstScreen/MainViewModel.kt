@@ -1,4 +1,4 @@
-package com.ikhandriuk.multiplescreensapp
+package com.ikhandriuk.multiplescreensapp.Screens.FirstScreen
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

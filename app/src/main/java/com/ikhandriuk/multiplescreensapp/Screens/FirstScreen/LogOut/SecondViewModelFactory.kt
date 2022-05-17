@@ -1,4 +1,4 @@
-package com.ikhandriuk.multiplescreensapp
+package com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.LogOut
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
