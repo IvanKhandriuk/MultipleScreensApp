@@ -12,4 +12,7 @@ class LogOutRepository {
     suspend fun logOut(authorizationCode:String): Response<LogOutItem>{
         return RetrofitLogOut.API.logOut(authorizationCode)
     }
+
+    suspend fun getStringResponse (authorizationCode: String) {
+    }
 }

@@ -38,10 +38,10 @@ class FirstScreen : AppCompatActivity() {
             viewModel.logOut(authCode.toString())
             viewModel.logOutResponse.observe(this,Observer{response->
                 if(response.isSuccessful){
-                    Log.d("Answer",response.code().toString())
+                    Log.d("Answer_code",response.code().toString())
                 }
                 else{
-                    Log.d("Answer",response.errorBody().toString())
+                    Log.d("Answer_error",response.errorBody().toString())
                 }
             })
             finish()

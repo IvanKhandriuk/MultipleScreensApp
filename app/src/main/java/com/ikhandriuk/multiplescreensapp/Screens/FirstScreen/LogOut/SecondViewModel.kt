@@ -22,4 +22,6 @@ class SecondViewModel(private val repositoryLogOut:LogOutRepository): ViewModel(
             logOutResponse.value=response
         }
     }
+
+
 }

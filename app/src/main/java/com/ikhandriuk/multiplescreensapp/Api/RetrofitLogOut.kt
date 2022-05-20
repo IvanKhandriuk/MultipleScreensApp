@@ -13,7 +13,7 @@ object RetrofitLogOut {
     private val retrofitOut by lazy{
         Retrofit.Builder()
             .baseUrl(Constants.LOG_OUT_URL)
-            .addConverterFactory(GsonConverterFactory.create())
+            .addConverterFactory(ScalarsConverterFactory.create())
             .build()
     }
     val API: ApiLogOut by lazy{
