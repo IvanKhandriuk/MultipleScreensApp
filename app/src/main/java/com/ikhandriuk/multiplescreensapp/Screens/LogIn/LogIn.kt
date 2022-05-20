@@ -53,7 +53,8 @@ class LogIn : AppCompatActivity() {
                     Log.d("RsCode", response.body()?.code.toString())
                     Log.d("Response result", response.body()?.result.toString())
                     val intent=Intent(this@LogIn, FirstScreen::class.java)
-                    intent.putExtra("RsCode",viewModel.myResponse.value?.body()?.code)
+                    val rscode=viewModel.myResponse.value?.body()?.code.toString()
+                    intent.putExtra("RsCode",viewModel.myResponse.value?.body()?.code.toString())
                     finish()
                     startActivity(intent)
 
