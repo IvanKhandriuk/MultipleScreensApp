@@ -16,12 +16,12 @@ class SecondViewModel(private val repositoryLogOut:LogOutRepository): ViewModel(
 
     val logOutResponse: MutableLiveData<Response<LogOutItem>> = MutableLiveData()
 
-    fun logOut(code: String){
+    val falseLogOutResponse: MutableLiveData<Response<String>> = MutableLiveData()
+
+    fun logOut(code: String) {
         viewModelScope.launch {
-            val response=repositoryLogOut.logOut(code)
-            logOutResponse.value=response
+            val response = repositoryLogOut.logOut(code)
+            logOutResponse.value = response
         }
     }
-
-
 }
