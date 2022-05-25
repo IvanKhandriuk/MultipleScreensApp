@@ -12,8 +12,5 @@ interface ApiLogOut {
 
     @GET("ev_auth")
     suspend fun logOut(@Query("deauth") code:String):Response<LogOutItem>
-
-    @GET
-    fun getStringResponse(@Url url: String?): Call<String?>?
 }
 

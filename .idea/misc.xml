@@ -11,9 +11,10 @@
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/drawable/ic_baseline_looks_24.xml" value="0.123" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/drawable/ic_launcher_background.xml" value="0.123" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/activity_log_in.xml" value="0.25" />
-        <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/first_screen.xml" value="0.35104166666666664" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/item_parametrs_layout.xml" value="0.35104166666666664" />
+        <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/row_layout.xml" value="0.35104166666666664" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/menu/menu.xml" value="0.34564102564102567" />
       </map>
     </option>

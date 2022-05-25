@@ -1,92 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<androidx.constraintlayout.widget.ConstraintLayout
 
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="3dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        android:padding="6dp">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/powerTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:text="Потужність:"
+        android:textColor="#F44336"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Потужність:"
-                android:textColor="#F44336"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/forecastTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Прогноз:"
+        android:textColor="#3F51B5"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/powerTextView"
+        app:layout_constraintTop_toBottomOf="@+id/powerTextView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Прогноз:"
-                android:textColor="#3F51B5"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/deviationTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Похибка:"
+        android:textColor="#00BCD4"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="@+id/forecastTextView"
+        app:layout_constraintTop_toBottomOf="@+id/forecastTextView" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Похибка:"
-                android:textColor="#00BCD4"
-                android:textSize="20dp" />
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="2dp"
-            android:layout_height="match_parent"
-            android:layout_margin="2dp"
-            android:background="@color/black" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/item_power"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:text="xx"
-                android:textSize="20dp" />
+    <TextView
+        android:id="@+id/item_power"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="xx"
+        android:textSize="20dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toEndOf="@+id/powerTextView"
+        app:layout_constraintTop_toTopOf="@+id/powerTextView" />
 
             <TextView
                 android:id="@+id/item_forecast"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
+               android:layout_marginLeft="8dp"
                 android:text="xx"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/forecastTextView"
+                app:layout_constraintTop_toTopOf="@id/forecastTextView"/>
 
             <TextView
                 android:id="@+id/item_deviation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
                 android:text="xx"
-                android:textSize="20sp" />
-        </LinearLayout>
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/deviationTextView"
+                app:layout_constraintTop_toTopOf="@id/deviationTextView"/>
 
-        <LinearLayout
-            android:layout_width="58dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -94,28 +82,28 @@
                 android:layout_marginStart="6dp"
                 android:layout_marginLeft="6dp"
                 android:text="МВт"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_power"
+                app:layout_constraintTop_toTopOf="@id/item_power"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginLeft="8dp"
                 android:text="МВт"
-                android:textSize="20dp" />
+                android:textSize="20dp"
+                app:layout_constraintStart_toEndOf="@id/item_forecast"
+                app:layout_constraintTop_toTopOf="@id/item_forecast"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="6dp"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="8dp"
-                android:text="МВт"
-                android:textSize="20sp" />
+                android:layout_marginLeft="8dp"
+                android:text="%"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@id/item_deviation"
+                app:layout_constraintTop_toTopOf="@id/item_deviation"/>
 
-        </LinearLayout>
 
-    </LinearLayout>
 
-</androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

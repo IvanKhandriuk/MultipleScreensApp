@@ -13,7 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModel
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModelFactory
 import com.ikhandriuk.multiplescreensapp.R
-import com.ikhandriuk.multiplescreensapp.Repository.AuthorizationRepository
+import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.FirstScreen
 import java.util.*
 
@@ -36,7 +36,7 @@ class LogIn : AppCompatActivity() {
         btnLogIn=findViewById(R.id.btnLogIn)
 
 
-        val authorizationRepository = AuthorizationRepository()
+        val authorizationRepository = Repository()
         val viewModelFactory= MainViewModelFactory(authorizationRepository)
         viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
 

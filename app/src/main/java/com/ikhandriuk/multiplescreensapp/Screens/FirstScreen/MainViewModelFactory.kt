@@ -2,13 +2,13 @@ package com.ikhandriuk.multiplescreensapp.Screens.FirstScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ikhandriuk.multiplescreensapp.Repository.AuthorizationRepository
+import com.ikhandriuk.multiplescreensapp.Repository.Repository
 
 class MainViewModelFactory(
-    private val authorizationRepository: AuthorizationRepository
+    private val repository: Repository
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return MainViewModel(authorizationRepository) as T
+        return MainViewModel(repository) as T
     }
 }
