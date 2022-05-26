@@ -10,8 +10,8 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModel
-import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.MainViewModelFactory
+import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
+import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.FirstScreen
@@ -36,9 +36,9 @@ class LogIn : AppCompatActivity() {
         btnLogIn=findViewById(R.id.btnLogIn)
 
 
-        val authorizationRepository = Repository()
-        val viewModelFactory= MainViewModelFactory(authorizationRepository)
-        viewModel= ViewModelProvider(this,viewModelFactory).get(MainViewModel::class.java)
+        val repository = Repository()
+        val viewModelFactory= MainViewModelFactory(repository)
+        viewModel= ViewModelProvider(this,viewModelFactory)[MainViewModel::class.java]
 
         btnLogIn.setOnClickListener {
 
@@ -46,15 +46,12 @@ class LogIn : AppCompatActivity() {
             val myPassWord = edtPassword.text.toString()
             val encodePass: String = Base64.getEncoder().encodeToString(myPassWord.toByteArray())
             viewModel.setAuthorization(myLogIn, encodePass)
-
-            viewModel.myResponse.observe(this, androidx.lifecycle.Observer{ response ->
+            viewModel.myAuthResponse.observe(this, androidx.lifecycle.Observer{ response ->
                 if (response.isSuccessful) {
-                    val responseCode =viewModel.myResponse.value?.body()?.code
                     Log.d("RsCode", response.body()?.code.toString())
                     Log.d("Response result", response.body()?.result.toString())
                     val intent=Intent(this@LogIn, FirstScreen::class.java)
-                    val rscode=viewModel.myResponse.value?.body()?.code.toString()
-                    intent.putExtra("RsCode",viewModel.myResponse.value?.body()?.code.toString())
+                    intent.putExtra("RsCode",viewModel.myAuthResponse.value?.body()?.code.toString())
                     finish()
                     startActivity(intent)
 

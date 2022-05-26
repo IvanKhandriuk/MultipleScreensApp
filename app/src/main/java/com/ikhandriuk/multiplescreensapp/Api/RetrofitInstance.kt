@@ -3,6 +3,7 @@ package com.examples.getrequestapp.Data.Api
 import com.ikhandriuk.multiplescreensapp.Util.Constants.Companion.BASE_URL
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 object RetrofitInstance {
     private val retrofit by lazy{
@@ -12,7 +13,9 @@ object RetrofitInstance {
             .build()
     }
 
-    val API:ApiAuthorization by lazy{
-        retrofit.create(ApiAuthorization::class.java)
+    val API:EmeterApi by lazy{
+        retrofit.create(EmeterApi::class.java)
     }
+
+
 }
