@@ -1,5 +1,6 @@
 package com.ikhandriuk.multiplescreensapp.Adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,12 +11,6 @@ import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 
 class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
-
-
-    private lateinit var power:TextView
-    private lateinit var forecast:TextView
-    private lateinit var deviation:TextView
-
 
     private var startList= emptyList<ParamItem>()
 
@@ -32,12 +27,9 @@ class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
     }
 
     override fun onBindViewHolder(holder: FirstViewHolder, position: Int){
-        power.findViewById<TextView>(R.id.item_power)
-        forecast.findViewById<TextView>(R.id.item_forecast)
-        deviation.findViewById<TextView>(R.id.item_deviation)
 
-        power.text=startList[position].bdata.toString()
-        power.text=startList[position].ddata.toString()
+        holder.itemView.findViewById<TextView>(R.id.item_power).text=startList[position].ddata.toString()
+        holder.itemView.findViewById<TextView>(R.id.item_forecast).text=startList[position].bdata.toString()
     }
 
     fun setData(newList: List<ParamItem>){

@@ -15,7 +15,12 @@ import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.FirstScreen
+import java.sql.Timestamp
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.time.Duration.Companion.nanoseconds
 
 class LogIn : AppCompatActivity() {
 
@@ -28,7 +33,6 @@ class LogIn : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_log_in)
-
         supportActionBar?.hide()
 
         edtLogIn=findViewById(R.id.edtLogin)

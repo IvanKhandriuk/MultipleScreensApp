@@ -1,6 +1,7 @@
 package com.ikhandriuk.multiplescreensapp.Repository
 
 import com.examples.getrequestapp.Data.Api.RetrofitInstance
+import com.ikhandriuk.multiplescreensapp.Api.RetrofitDataInstance
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
 import com.ikhandriuk.multiplescreensapp.Model.ParamItem
@@ -25,6 +26,6 @@ class Repository {
         ids: String,
         time: String
     ): Response<List<ParamItem>> {
-        return RetrofitInstance.API.getData(code, notlast, action, date, ids, time)
+        return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
     }
 }
