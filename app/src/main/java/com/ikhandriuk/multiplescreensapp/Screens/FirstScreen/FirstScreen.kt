@@ -33,14 +33,15 @@ class FirstScreen : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setContentView(R.layout.item_parametrs_layout)
 
-        setupRecyclerview()
+       //setupRecyclerview()
 
         val authCode = intent.getStringExtra("RsCode").toString()
         val currentDate = date.format(calendar.time)
         val nanotime = calendar.timeInMillis.toString()
 
-        Log.d("CurrentDate2", currentDate)
-        Log.d("CurrentDate5", nanotime)
+        Log.d("CurrentDate", currentDate)
+        Log.d("CurrentTime", nanotime)
+        Log.d("CurrentAuthCode", authCode)
         // code=1454366173&notlast=1&action=data&date=2022-05-23&ids=41&time=1653288441658
 
         val repository = Repository()
@@ -57,17 +58,20 @@ class FirstScreen : AppCompatActivity() {
         )
         viewModel.myDataResponse.observe(this, Observer { response->
             if(response.isSuccessful){
-                response.body()?.let { firstAdapter.setData(it) }
+                Log.d("DataResponse",response.code().toString())
+                //response.body()?.let { firstAdapter.setData(it) }
             }else{
                 Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
             }
         })
 
     }
-    private fun setupRecyclerview(){
-        recyclerView.adapter=firstAdapter
-        recyclerView.layoutManager=LinearLayoutManager(this)
-    }
+
+//    private fun setupRecyclerview(){
+//        //recyclerView=findViewById(R.id.mainRecyclerView)
+//        recyclerView.adapter=firstAdapter
+//        recyclerView.layoutManager=LinearLayoutManager(this)
+//    }
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

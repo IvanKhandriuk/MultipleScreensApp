@@ -4,7 +4,7 @@ import com.examples.getrequestapp.Data.Api.RetrofitInstance
 import com.ikhandriuk.multiplescreensapp.Api.RetrofitDataInstance
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
-import com.ikhandriuk.multiplescreensapp.Model.ParamItem
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import retrofit2.Response
 
@@ -18,14 +18,14 @@ class Repository {
         return RetrofitInstance.API.logOut(authorizationCode)
     }
 
-    suspend fun getDAta(
+    suspend fun getData(
         code: String,
         notlast: String,
         action: String,
         date: String,
         ids: String,
         time: String
-    ): Response<List<ParamItem>> {
+    ): Response<List<ParametersItem>> {
         return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
     }
 }

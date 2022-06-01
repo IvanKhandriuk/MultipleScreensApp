@@ -5,7 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
-import com.ikhandriuk.multiplescreensapp.Model.ParamItem
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
+import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -21,8 +22,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
-    val myDataResponse: MutableLiveData<Response<List<ParamItem>>> = MutableLiveData()
-
+    val myDataResponse: MutableLiveData<Response<List<ParametersItem>>> = MutableLiveData()
     fun getData(code: String,
                   notlast: String,
                   action: String,
@@ -30,7 +30,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
                   ids: String,
                   time: String) {
         viewModelScope.launch {
-            val response = repository.getDAta(code,notlast,action,date,ids,time)
+            val response = repository.getData(code,notlast,action,date,ids,time)
             myDataResponse.value = response
         }
     }
