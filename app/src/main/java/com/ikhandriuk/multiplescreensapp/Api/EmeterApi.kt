@@ -4,12 +4,16 @@ import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
 import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
+import org.json.JSONObject
 import retrofit2.Response
 import retrofit2.http.*
+import java.util.*
 
 
 //ev_auth.php?login=login&pass=base64(pass)
 interface EmeterApi {
+
+    val root get() = JSONObject()
 
     @GET("ev_auth.php")
     suspend fun setAuthorization(
@@ -28,7 +32,7 @@ interface EmeterApi {
         @Query("date") date: String,
         @Query("ids") ids: String,
         @Query("time") time: String,
-    ): Response <List<ParametersItem>>
+    ): Response<List<ParamItem>>
 
     //https://ev.e-meter.biz/deviation.
     // asdlf?

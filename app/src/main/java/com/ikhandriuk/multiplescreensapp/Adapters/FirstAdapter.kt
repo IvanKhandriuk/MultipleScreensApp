@@ -13,7 +13,7 @@ import com.ikhandriuk.multiplescreensapp.R
 class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
 
 
-    private var startList= emptyList<ParamItem>()
+    private var startList= emptyList<ParametersItem>()
 
      class FirstViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -29,7 +29,7 @@ class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
 
     override fun onBindViewHolder(holder: FirstViewHolder, position: Int){
 
-        holder.itemView.findViewById<TextView>(R.id.item_power).text=startList[position].bdata.toString()
+        holder.itemView.findViewById<TextView>(R.id.item_power).text=startList[position].data.toString()
     }
 
 //    fun setData(newList: List<ParametersItem>){

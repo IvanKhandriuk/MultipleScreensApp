@@ -7,6 +7,7 @@ import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
 import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import retrofit2.Response
+import java.util.*
 
 class Repository {
 
@@ -25,7 +26,7 @@ class Repository {
         date: String,
         ids: String,
         time: String
-    ): Response<List<ParametersItem>> {
+    ): Response<List<ParamItem>> {
         return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
     }
 }

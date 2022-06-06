@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ikhandriuk.multiplescreensapp.Adapters.FirstAdapter
+import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.LogIn.LogIn
@@ -19,6 +20,7 @@ import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class FirstScreen : AppCompatActivity() {
 
@@ -33,8 +35,6 @@ class FirstScreen : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setContentView(R.layout.item_parametrs_layout)
 
-       //setupRecyclerview()
-
         val authCode = intent.getStringExtra("RsCode").toString()
         val currentDate = date.format(calendar.time)
         val nanotime = calendar.timeInMillis.toString()
@@ -42,30 +42,38 @@ class FirstScreen : AppCompatActivity() {
         Log.d("CurrentDate", currentDate)
         Log.d("CurrentTime", nanotime)
         Log.d("CurrentAuthCode", authCode)
-        // code=1454366173&notlast=1&action=data&date=2022-05-23&ids=41&time=1653288441658
 
-        val repository = Repository()
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+        val paramList: ArrayList<ParametersItem> = ArrayList()
 
-        viewModel.getData(
-            authCode,
-            "1",
-            "data",
-            currentDate,
-            "41",
-            nanotime
-        )
-        viewModel.myDataResponse.observe(this, Observer { response->
-            if(response.isSuccessful){
-                Log.d("DataResponse",response.code().toString())
-                //response.body()?.let { firstAdapter.setData(it) }
-            }else{
-                Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
-            }
-        })
 
     }
+//    val repository = Repository()
+//    val viewModelFactory = MainViewModelFactory(repository)
+//    viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::
+//    class.java]
+//
+//    viewModel.getData(
+//    authCode,
+//    "1",
+//    "data",
+//    currentDate,
+//    "41",
+//    nanotime
+//    )
+
+//        viewModel.myDataResponse.observe(this, Observer { response->
+//            if(response.isSuccessful) {
+//                Log.d("DataResponse",response.code().toString())
+//            }else{
+//                Log.d("DataResponse", response.errorBody().toString())
+//                Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
+//            }
+//        })
+
+
+
+
+    //setupRecyclerview()
 
 //    private fun setupRecyclerview(){
 //        //recyclerView=findViewById(R.id.mainRecyclerView)
@@ -87,6 +95,7 @@ class FirstScreen : AppCompatActivity() {
         Log.d("RsCode", authCode)
 
         if (item.itemId == R.id.logout) {
+
             viewModel.logOut(authCode)
             viewModel.logOutResponse.observe(this, Observer { response ->
                 if (response.isSuccessful) {

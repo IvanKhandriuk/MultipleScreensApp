@@ -10,6 +10,8 @@ import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import kotlinx.coroutines.launch
 import retrofit2.Response
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainViewModel(private val repository: Repository): ViewModel() {
 
@@ -22,7 +24,7 @@ class MainViewModel(private val repository: Repository): ViewModel() {
         }
     }
 
-    val myDataResponse: MutableLiveData<Response<List<ParametersItem>>> = MutableLiveData()
+    val myDataResponse: MutableLiveData<Response<List<ParamItem>>> = MutableLiveData()
     fun getData(code: String,
                   notlast: String,
                   action: String,
