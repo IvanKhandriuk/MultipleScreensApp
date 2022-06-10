@@ -9,9 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.ikhandriuk.multiplescreensapp.Adapters.FirstAdapter
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
@@ -20,58 +17,52 @@ import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class FirstScreen : AppCompatActivity() {
 
     private lateinit var viewModel: MainViewModel
-    private val firstAdapter by lazy { FirstAdapter() }
     private val date = SimpleDateFormat("yyyy-MM-dd")
     val calendar = Calendar.getInstance()
-    lateinit var recyclerView: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setContentView(R.layout.item_parametrs_layout)
 
         val authCode = intent.getStringExtra("RsCode").toString()
         val currentDate = date.format(calendar.time)
         val nanotime = calendar.timeInMillis.toString()
+        val repository = Repository()
+
+        val baseResponse:ParametersItem
+
 
         Log.d("CurrentDate", currentDate)
         Log.d("CurrentTime", nanotime)
         Log.d("CurrentAuthCode", authCode)
 
-        val paramList: ArrayList<ParametersItem> = ArrayList()
 
+        val viewModelFactory = MainViewModelFactory(repository)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
 
+        viewModel.getData(
+            authCode,
+            "1",
+            "data",
+            currentDate,
+            "41",
+            nanotime
+        )
+
+        viewModel.myDataResponse.observe(this, Observer { response->
+            if(response.isSuccessful) {
+                Log.d("DataResponse",response.code().toString())
+            }else{
+                Log.d("DataResponse", response.errorBody().toString())
+                Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
+            }
+        })
     }
-//    val repository = Repository()
-//    val viewModelFactory = MainViewModelFactory(repository)
-//    viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::
-//    class.java]
-//
-//    viewModel.getData(
-//    authCode,
-//    "1",
-//    "data",
-//    currentDate,
-//    "41",
-//    nanotime
-//    )
-
-//        viewModel.myDataResponse.observe(this, Observer { response->
-//            if(response.isSuccessful) {
-//                Log.d("DataResponse",response.code().toString())
-//            }else{
-//                Log.d("DataResponse", response.errorBody().toString())
-//                Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
-//            }
-//        })
-
-
-
 
     //setupRecyclerview()
 

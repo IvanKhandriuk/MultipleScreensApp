@@ -29,7 +29,6 @@ class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
 
     override fun onBindViewHolder(holder: FirstViewHolder, position: Int){
 
-        holder.itemView.findViewById<TextView>(R.id.item_power).text=startList[position].data.toString()
     }
 
 //    fun setData(newList: List<ParametersItem>){

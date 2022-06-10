@@ -1,10 +1,11 @@
 package com.examples.getrequestapp.Data.Api
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
-import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
-import org.json.JSONObject
+import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 import java.util.*
@@ -12,8 +13,6 @@ import java.util.*
 
 //ev_auth.php?login=login&pass=base64(pass)
 interface EmeterApi {
-
-    val root get() = JSONObject()
 
     @GET("ev_auth.php")
     suspend fun setAuthorization(
@@ -25,14 +24,14 @@ interface EmeterApi {
     suspend fun logOut(@Query("deauth") code: String): Response<LogOutItem>
 
     @GET("deviation.asdlf?")
-    suspend fun getData(
+    fun getData(
         @Query("code") code: String,
         @Query("notlast") notlast: String,
         @Query("action") action: String,
         @Query("date") date: String,
         @Query("ids") ids: String,
         @Query("time") time: String,
-    ): Response<List<ParamItem>>
+    ): Call<List<ParametersItem>>
 
     //https://ev.e-meter.biz/deviation.
     // asdlf?
