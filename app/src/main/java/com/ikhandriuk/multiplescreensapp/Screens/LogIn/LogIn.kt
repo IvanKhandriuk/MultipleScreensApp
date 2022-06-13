@@ -51,16 +51,15 @@ class LogIn : AppCompatActivity() {
             val encodePass: String = Base64.getEncoder().encodeToString(myPassWord.toByteArray())
             viewModel.setAuthorization(myLogIn, encodePass)
             viewModel.myAuthResponse.observe(this, androidx.lifecycle.Observer{ response ->
-                if (response.isSuccessful) {
+                if (response.isSuccessful&&response.body()?.code.toString()!="0") {
                     Log.d("RsCode", response.body()?.code.toString())
                     Log.d("Response result", response.body()?.result.toString())
                     val intent=Intent(this@LogIn, FirstScreen::class.java)
                     intent.putExtra("RsCode",viewModel.myAuthResponse.value?.body()?.code.toString())
                     finish()
                     startActivity(intent)
-
                 } else {
-                    Log.d("Error",response.code().toString())
+                    Log.d("Error",response.errorBody().toString(),)
                     Toast.makeText(this@LogIn,"Wrong password or login",Toast.LENGTH_SHORT).show()
                 }
             })

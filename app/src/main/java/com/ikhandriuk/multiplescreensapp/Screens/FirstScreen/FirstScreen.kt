@@ -5,16 +5,20 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.examples.getrequestapp.Data.Api.EmeterApi
+import com.google.gson.GsonBuilder
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.LogIn.LogIn
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
+import com.ikhandriuk.multiplescreensapp.Util.Constants.Companion.DATA_URL
+import retrofit2.*
+import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -24,54 +28,72 @@ class FirstScreen : AppCompatActivity() {
     private lateinit var viewModel: MainViewModel
     private val date = SimpleDateFormat("yyyy-MM-dd")
     val calendar = Calendar.getInstance()
+    val currentDate = date.format(calendar.time)
+    val nanotime = calendar.timeInMillis.toString()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         val authCode = intent.getStringExtra("RsCode").toString()
-        val currentDate = date.format(calendar.time)
-        val nanotime = calendar.timeInMillis.toString()
-        val repository = Repository()
 
-        val baseResponse:ParametersItem
 
 
         Log.d("CurrentDate", currentDate)
         Log.d("CurrentTime", nanotime)
         Log.d("CurrentAuthCode", authCode)
 
+        getMyData()
+    }
 
-        val viewModelFactory = MainViewModelFactory(repository)
-        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+    private fun getMyData() {
+        var gson = GsonBuilder()
+            .setLenient()
+            .create()
 
-        viewModel.getData(
-            authCode,
+        val authCode = intent.getStringExtra("RsCode").toString()
+        val retrofitBuilder=Retrofit.Builder()
+            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(DATA_URL)
+            .build()
+            .create(EmeterApi::class.java)
+
+        val retrofitData=retrofitBuilder.getData(authCode,
             "1",
             "data",
             currentDate,
             "41",
-            nanotime
-        )
+            nanotime)
 
-        viewModel.myDataResponse.observe(this, Observer { response->
-            if(response.isSuccessful) {
-                Log.d("DataResponse",response.code().toString())
-            }else{
-                Log.d("DataResponse", response.errorBody().toString())
-                Toast.makeText(this,response.code(),Toast.LENGTH_SHORT).show()
+//        retrofitData.enqueue(object : Callback<ParametersItem.DataList?> {
+//            override fun onResponse(
+//                call: Call<ParametersItem.DataList?>,
+//                response: Response<ParametersItem.DataList?>
+//            ) {
+//                val responseBody = response.body()
+//                Log.d("CurrentBody", responseBody.toString())
+//            }
+//
+//            override fun onFailure(call: Call<ParametersItem.DataList?>, t: Throwable) {
+//                Log.d("CurrentError","onFailure: "+t.message)
+//            }
+//        })
+
+        retrofitData.enqueue(object : Callback<List<ParametersItem.DataList>?> {
+            override fun onResponse(
+                call: Call<List<ParametersItem.DataList>?>,
+                response: Response<List<ParametersItem.DataList>?>
+            ) {
+                val responseBody = response.body()
+                Log.d("CurrentBody", responseBody.toString())
+
+            }
+
+            override fun onFailure(call: Call<List<ParametersItem.DataList>?>, t: Throwable) {
+                Log.d("CurrentError","onFailure: "+t.message)
             }
         })
+
     }
-
-    //setupRecyclerview()
-
-//    private fun setupRecyclerview(){
-//        //recyclerView=findViewById(R.id.mainRecyclerView)
-//        recyclerView.adapter=firstAdapter
-//        recyclerView.layoutManager=LinearLayoutManager(this)
-//    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)

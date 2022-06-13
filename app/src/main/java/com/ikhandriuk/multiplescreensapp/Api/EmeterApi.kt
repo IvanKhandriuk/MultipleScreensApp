@@ -1,14 +1,11 @@
 package com.examples.getrequestapp.Data.Api
 
-import com.google.gson.Gson
-import com.google.gson.GsonBuilder
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
-import java.util.*
 
 
 //ev_auth.php?login=login&pass=base64(pass)
@@ -31,7 +28,7 @@ interface EmeterApi {
         @Query("date") date: String,
         @Query("ids") ids: String,
         @Query("time") time: String,
-    ): Call<List<ParametersItem>>
+    ): Call<ParametersItem.DataList>
 
     //https://ev.e-meter.biz/deviation.
     // asdlf?
