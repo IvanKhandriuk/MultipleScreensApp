@@ -28,7 +28,7 @@ interface EmeterApi {
         @Query("date") date: String,
         @Query("ids") ids: String,
         @Query("time") time: String,
-    ): Call<ParametersItem.DataList>
+    ): Call<ParametersItem>
 
     //https://ev.e-meter.biz/deviation.
     // asdlf?

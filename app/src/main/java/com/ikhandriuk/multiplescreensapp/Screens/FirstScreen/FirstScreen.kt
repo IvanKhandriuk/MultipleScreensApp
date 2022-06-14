@@ -46,10 +46,6 @@ class FirstScreen : AppCompatActivity() {
     }
 
     private fun getMyData() {
-        var gson = GsonBuilder()
-            .setLenient()
-            .create()
-
         val authCode = intent.getStringExtra("RsCode").toString()
         val retrofitBuilder=Retrofit.Builder()
             .addConverterFactory(GsonConverterFactory.create())
@@ -64,31 +60,16 @@ class FirstScreen : AppCompatActivity() {
             "41",
             nanotime)
 
-//        retrofitData.enqueue(object : Callback<ParametersItem.DataList?> {
-//            override fun onResponse(
-//                call: Call<ParametersItem.DataList?>,
-//                response: Response<ParametersItem.DataList?>
-//            ) {
-//                val responseBody = response.body()
-//                Log.d("CurrentBody", responseBody.toString())
-//            }
-//
-//            override fun onFailure(call: Call<ParametersItem.DataList?>, t: Throwable) {
-//                Log.d("CurrentError","onFailure: "+t.message)
-//            }
-//        })
-
-        retrofitData.enqueue(object : Callback<List<ParametersItem.DataList>?> {
+        retrofitData.enqueue(object : Callback<ParametersItem?> {
             override fun onResponse(
-                call: Call<List<ParametersItem.DataList>?>,
-                response: Response<List<ParametersItem.DataList>?>
+                call: Call<ParametersItem?>,
+                response: Response<ParametersItem?>
             ) {
                 val responseBody = response.body()
                 Log.d("CurrentBody", responseBody.toString())
-
             }
 
-            override fun onFailure(call: Call<List<ParametersItem.DataList>?>, t: Throwable) {
+            override fun onFailure(call: Call<ParametersItem?>, t: Throwable) {
                 Log.d("CurrentError","onFailure: "+t.message)
             }
         })

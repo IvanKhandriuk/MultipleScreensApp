@@ -14,7 +14,7 @@ object RetrofitDataInstance {
     private val retrofitData by lazy{
         Retrofit.Builder()
             .baseUrl(Constants.DATA_URL)
-            .addConverterFactory(GsonConverterFactory.create(gson))
+            .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 

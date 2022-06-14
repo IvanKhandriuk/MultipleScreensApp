@@ -5,5 +5,7 @@ import com.google.gson.JsonObject
 import org.json.JSONArray
 import org.json.JSONObject
 
-data class ParamItem(val ddata: List<JSONArray>?,
-                     val bdata: List<JSONArray>?)
+data class ParamItem(
+    val ddata: List<JsonArray>?,
+    val bdata: List<JsonArray>?,
+    val d_id: Int=0)

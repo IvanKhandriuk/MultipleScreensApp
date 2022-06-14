@@ -20,18 +20,15 @@ class Repository {
     suspend fun logOut(authorizationCode: String): Response<LogOutItem> {
         return RetrofitInstance.API.logOut(authorizationCode)
     }
-//    var gson = GsonBuilder()
-//        .setLenient()
-//        .create()
-//    suspend fun getData(
-//        code: String,
-//        notlast: String,
-//        action: String,
-//        date: String,
-//        ids: String,
-//        time: String
-//    ): Call<List<ParametersItem>>  {
-//        return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
-//    }
+    fun getData(
+        code: String,
+        notlast: String,
+        action: String,
+        date: String,
+        ids: String,
+        time: String
+    ): Call<ParametersItem>  {
+        return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
+    }
 
 }
