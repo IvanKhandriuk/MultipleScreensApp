@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder
 import com.ikhandriuk.multiplescreensapp.Api.RetrofitDataInstance
 import com.ikhandriuk.multiplescreensapp.Model.AuthorizationItem
 import com.ikhandriuk.multiplescreensapp.Model.LogOutItem
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import retrofit2.Call
 import retrofit2.Response
@@ -20,15 +21,15 @@ class Repository {
     suspend fun logOut(authorizationCode: String): Response<LogOutItem> {
         return RetrofitInstance.API.logOut(authorizationCode)
     }
-    fun getData(
+    fun getDatta(
         code: String,
         notlast: String,
         action: String,
         date: String,
         ids: String,
         time: String
-    ): Call<ParametersItem>  {
-        return RetrofitDataInstance.APIData.getData(code, notlast, action, date, ids, time)
+    ): Response<ParametersItem>  {
+        return RetrofitDataInstance.APIData.getDatta(code, notlast, action, date, ids, time)
     }
 
 }

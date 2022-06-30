@@ -25,8 +25,8 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         }
     }
 
-    val myDataResponse: MutableLiveData<Call<ParametersItem>> = MutableLiveData()
-    fun getData(
+    val myDataResponse: MutableLiveData<Response<ParametersItem>> = MutableLiveData()
+    fun getDatta(
         code: String,
         notlast: String,
         action: String,
@@ -35,7 +35,7 @@ class MainViewModel(private val repository: Repository) : ViewModel() {
         time: String
     ) {
         viewModelScope.launch {
-            val response = repository.getData(code, notlast, action, date, ids, time)
+            val response = repository.getDatta(code, notlast, action, date, ids, time)
             myDataResponse.value = response
         }
     }

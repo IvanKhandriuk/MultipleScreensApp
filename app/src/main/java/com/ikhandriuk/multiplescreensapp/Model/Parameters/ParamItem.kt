@@ -6,6 +6,5 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 data class ParamItem(
-    val ddata: List<JsonArray>?,
-    val bdata: List<JsonArray>?,
-    val d_id: Int=0)
+    val ddata: ArrayList<JsonArray>?,
+    val bdata: ArrayList<JsonArray>?)

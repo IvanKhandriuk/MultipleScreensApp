@@ -1,38 +1,37 @@
 package com.ikhandriuk.multiplescreensapp.Adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.DataItem
 import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 
-class FirstAdapter: RecyclerView.Adapter<FirstAdapter.FirstViewHolder>(){
+class FirstAdapter: RecyclerView.Adapter<FirstAdapter.MyViewHolder>(){
 
+    private var myList= emptyList<ParamItem>()
 
-    private var startList= emptyList<ParametersItem>()
+    class MyViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
-     class FirstViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstAdapter.MyViewHolder {
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_parametrs_layout, parent,false)
+        return MyViewHolder(view)
+    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FirstViewHolder {
-        return FirstViewHolder(LayoutInflater
-            .from(parent.context)
-            .inflate(R.layout.item_parametrs_layout,parent,false))
+    override fun onBindViewHolder(holder: FirstAdapter.MyViewHolder, position: Int) {
+        holder.itemView.findViewById<TextView>(R.id.item_power).text=myList[position].bdata.toString()
+        holder.itemView.findViewById<TextView>(R.id.item_forecast).text=myList[position].ddata.toString()
     }
 
     override fun getItemCount(): Int {
-        return startList.size
+        return myList.size
     }
 
-    override fun onBindViewHolder(holder: FirstViewHolder, position: Int){
-
+    fun setData(newList: List<ParamItem>){
+        myList= newList
+        notifyDataSetChanged()
     }
-
-//    fun setData(newList: List<ParametersItem>){
-//        startList= newList
-//        notifyDataSetChanged()
-//    }
 }

@@ -14,7 +14,7 @@
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/custom_row.xml" value="0.1" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/first_screen.xml" value="0.35104166666666664" />
-        <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/item_parametrs_layout.xml" value="0.35104166666666664" />
+        <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/item_parametrs_layout.xml" value="0.25" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/layout/row_layout.xml" value="0.35104166666666664" />
         <entry key="..\:/Projects/MultipleScreensApp/app/src/main/res/menu/menu.xml" value="0.34564102564102567" />
       </map>
@@ -25,5 +25,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

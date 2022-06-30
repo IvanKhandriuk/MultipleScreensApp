@@ -9,7 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.examples.getrequestapp.Data.Api.EmeterApi
-import com.google.gson.GsonBuilder
+import com.google.gson.JsonArray
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.DataItem
+import com.ikhandriuk.multiplescreensapp.Model.Parameters.ParamItem
 import com.ikhandriuk.multiplescreensapp.Model.ParametersItem
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
@@ -17,13 +19,19 @@ import com.ikhandriuk.multiplescreensapp.Screens.LogIn.LogIn
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
 import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import com.ikhandriuk.multiplescreensapp.Util.Constants.Companion.DATA_URL
-import retrofit2.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class FirstScreen : AppCompatActivity() {
+
+//    private lateinit var recyclerView: RecyclerView
+//    private val firstAdapter by lazy { FirstAdapter() }
 
     private lateinit var viewModel: MainViewModel
     private val date = SimpleDateFormat("yyyy-MM-dd")
@@ -35,12 +43,6 @@ class FirstScreen : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val authCode = intent.getStringExtra("RsCode").toString()
-
-
-
-        Log.d("CurrentDate", currentDate)
-        Log.d("CurrentTime", nanotime)
-        Log.d("CurrentAuthCode", authCode)
 
         getMyData()
     }
@@ -57,7 +59,7 @@ class FirstScreen : AppCompatActivity() {
             "1",
             "data",
             currentDate,
-            "41",
+            "",
             nanotime)
 
         retrofitData.enqueue(object : Callback<ParametersItem?> {
@@ -65,8 +67,8 @@ class FirstScreen : AppCompatActivity() {
                 call: Call<ParametersItem?>,
                 response: Response<ParametersItem?>
             ) {
-                val responseBody = response.body()
-                Log.d("CurrentBody", responseBody.toString())
+                val responseBody = dataToDdata( response.body()?.data).toString()
+                Log.d("CurrentBody", responseBody)
             }
 
             override fun onFailure(call: Call<ParametersItem?>, t: Throwable) {
@@ -75,6 +77,16 @@ class FirstScreen : AppCompatActivity() {
         })
 
     }
+
+    private fun dataToDdata(data: List<DataItem>?): List<Int> {
+        var result:MutableList<Int> = arrayListOf()
+        if (data != null)
+            for( i in data) {
+                result.add(i.id)
+            }
+        return result
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
