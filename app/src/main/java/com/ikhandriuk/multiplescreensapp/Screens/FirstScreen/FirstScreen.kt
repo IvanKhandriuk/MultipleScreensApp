@@ -1,10 +1,13 @@
 package com.ikhandriuk.multiplescreensapp.Screens.FirstScreen
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -39,11 +42,13 @@ class FirstScreen : AppCompatActivity() {
     val currentDate = date.format(calendar.time)
     val nanotime = calendar.timeInMillis.toString()
 
+    //add custom image
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val authCode = intent.getStringExtra("RsCode").toString()
 
+        val authCode = intent.getStringExtra("RsCode").toString()
         getMyData()
     }
 
@@ -67,7 +72,7 @@ class FirstScreen : AppCompatActivity() {
                 call: Call<ParametersItem?>,
                 response: Response<ParametersItem?>
             ) {
-                val responseBody = dataToDdata( response.body()?.data).toString()
+                val responseBody = nameFromData( response.body()?.data).toString()
                 Log.d("CurrentBody", responseBody)
             }
 
@@ -78,13 +83,22 @@ class FirstScreen : AppCompatActivity() {
 
     }
 
-    private fun dataToDdata(data: List<DataItem>?): List<Int> {
-        var result:MutableList<Int> = arrayListOf()
+    private fun nameFromData(data: List<DataItem>?): List<String> {
+        var name:MutableList<String> = arrayListOf()
         if (data != null)
             for( i in data) {
-                result.add(i.id)
+                name.add(i.name)
             }
-        return result
+        return name
+    }
+
+    private fun idFromData(data: List<DataItem>?): List<Int> {
+        var id:MutableList<Int> = arrayListOf()
+        if (data != null)
+            for( i in data) {
+                id.add(i.id)
+            }
+        return id
     }
 
 
