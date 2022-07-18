@@ -10,17 +10,14 @@ import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
-import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
 import com.ikhandriuk.multiplescreensapp.R
 import com.ikhandriuk.multiplescreensapp.Repository.Repository
 import com.ikhandriuk.multiplescreensapp.Screens.FirstScreen.FirstScreen
-import java.sql.Timestamp
-import java.text.SimpleDateFormat
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
+import com.ikhandriuk.multiplescreensapp.Screens.MainViewModel
+import com.ikhandriuk.multiplescreensapp.Screens.MainViewModelFactory
+import okhttp3.OkHttpClient
 import java.util.*
-import kotlin.time.Duration.Companion.nanoseconds
+
 
 class LogIn : AppCompatActivity() {
 
@@ -59,7 +56,7 @@ class LogIn : AppCompatActivity() {
                     finish()
                     startActivity(intent)
                 } else {
-                    Log.d("Error",response.errorBody().toString(),)
+                    Log.d("Error", response.errorBody().toString())
                     Toast.makeText(this@LogIn,"Wrong password or login",Toast.LENGTH_SHORT).show()
                 }
             })

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -42,10 +43,14 @@ class FirstScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val spinnerNames = findViewById<Spinner>(R.id.spinnerNames)
         val authCode = intent.getStringExtra("RsCode").toString()
 
         getMyData()
     }
+
+
+
 
     private fun getMyData() {
         val authCode = intent.getStringExtra("RsCode").toString()
@@ -67,7 +72,7 @@ class FirstScreen : AppCompatActivity() {
                 call: Call<ParametersItem?>,
                 response: Response<ParametersItem?>
             ) {
-                val responseBody = dataToDdata( response.body()?.data).toString()
+                val responseBody = dataToNames( response.body()?.data).toString()
                 Log.d("CurrentBody", responseBody)
             }
 
@@ -75,10 +80,9 @@ class FirstScreen : AppCompatActivity() {
                 Log.d("CurrentError","onFailure: "+t.message)
             }
         })
-
     }
 
-    private fun dataToDdata(data: List<DataItem>?): List<Int> {
+    private fun dataToId(data: List<DataItem>?): List<Int> {
         var result:MutableList<Int> = arrayListOf()
         if (data != null)
             for( i in data) {
@@ -87,6 +91,14 @@ class FirstScreen : AppCompatActivity() {
         return result
     }
 
+    private fun dataToNames(data: List<DataItem>?): List<String> {
+        var result:MutableList<String> = arrayListOf()
+        if (data != null)
+            for( i in data) {
+                result.add(i.name)
+            }
+        return result
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu, menu)
