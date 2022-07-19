@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Screens.LogIn.LogIn"
-    android:background="@drawable/gradienr_background">
+    android:background="@drawable/gradient_background">
+
 
     <EditText
         android:id="@+id/edtLogin"
