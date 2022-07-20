@@ -18,4 +18,5 @@
         android:drawableEnd="@drawable/ic_arrow"
         app:layout_constraintTop_toTopOf="parent"
         android:drawableRight="@drawable/ic_arrow" />
+
 </RelativeLayout>
