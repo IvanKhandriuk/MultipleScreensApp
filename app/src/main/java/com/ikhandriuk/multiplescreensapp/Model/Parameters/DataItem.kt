@@ -8,5 +8,4 @@ import org.json.JSONArray
 data class DataItem(
     val name : String = "",
     val id : Int=0,
-    val name : String="",
     val param: ArrayList<ParamItem>?)

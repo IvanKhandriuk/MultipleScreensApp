@@ -43,15 +43,11 @@ class FirstScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val spinnerNames = findViewById<Spinner>(R.id.spinnerNames)
+        //val spinnerNames = findViewById<Spinner>(R.id.spinnerNames)
         val authCode = intent.getStringExtra("RsCode").toString()
 
         getMyData()
     }
-
-
-
-
     private fun getMyData() {
         val authCode = intent.getStringExtra("RsCode").toString()
         val retrofitBuilder=Retrofit.Builder()
