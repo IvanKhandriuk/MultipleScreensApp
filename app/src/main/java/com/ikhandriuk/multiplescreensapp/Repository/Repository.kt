@@ -21,7 +21,8 @@ class Repository {
     suspend fun logOut(authorizationCode: String): Response<LogOutItem> {
         return RetrofitInstance.API.logOut(authorizationCode)
     }
-    fun getDatta(
+
+    suspend fun getDatta(
         code: String,
         notlast: String,
         action: String,
@@ -29,7 +30,7 @@ class Repository {
         ids: String,
         time: String
     ): Response<ParametersItem>  {
-        return RetrofitDataInstance.APIData.getDatta(code, notlast, action, date, ids, time)
+        return RetrofitInstance.APIData.getDatta(code, notlast, action, date, ids, time)
     }
 
 }

@@ -48,6 +48,7 @@ class FirstScreen : AppCompatActivity() {
 
         getMyData()
     }
+
     private fun getMyData() {
         val authCode = intent.getStringExtra("RsCode").toString()
         val retrofitBuilder=Retrofit.Builder()
@@ -70,6 +71,7 @@ class FirstScreen : AppCompatActivity() {
             ) {
                 val responseBody = dataToNames( response.body()?.data).toString()
                 Log.d("CurrentBody", responseBody)
+
             }
 
             override fun onFailure(call: Call<ParametersItem?>, t: Throwable) {

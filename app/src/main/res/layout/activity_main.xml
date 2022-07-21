@@ -1,22 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:gravity="center"
+    android:orientation="vertical"
     tools:context=".Screens.FirstScreen.FirstScreen">
 
-    <TextView
-        android:id="@+id/stationNameTextView"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Choose station"
-        android:gravity="center_vertical"
-        android:drawableEnd="@drawable/ic_arrow"
-        app:layout_constraintTop_toTopOf="parent"
-        android:drawableRight="@drawable/ic_arrow" />
+        android:layout_margin="5dp"
+        app:iconifiedByDefault="false"
+        app:queryHint="Search name" />
 
-</RelativeLayout>
+    <ListView
+        android:id="@+id/list_item"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp" />
+
+    <!--    <TextView-->
+<!--        android:id="@+id/stationNameTextView"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Choose station"-->
+<!--        android:gravity="center_vertical"-->
+<!--        android:drawableEnd="@drawable/ic_arrow"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:drawableRight="@drawable/ic_arrow" />-->
+
+</LinearLayout>

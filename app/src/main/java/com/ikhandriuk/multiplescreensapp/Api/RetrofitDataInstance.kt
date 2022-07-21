@@ -9,20 +9,16 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object RetrofitDataInstance {
-    var gson = GsonBuilder()
-        .setLenient()
-        .create()
 
-    private val retrofitData by lazy{
+    private val retrofitData by lazy {
         Retrofit.Builder()
             .baseUrl(Constants.DATA_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
     }
 
-    val APIData: EmeterApi by lazy{
+    val APIData: EmeterApi by lazy {
         retrofitData.create(EmeterApi::class.java)
     }
-
 
 }

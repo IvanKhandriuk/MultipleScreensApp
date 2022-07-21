@@ -8,8 +8,6 @@ import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.*
 
-
-//ev_auth.php?login=login&pass=base64(pass)
 interface EmeterApi {
 
     @GET("ev_auth.php")
@@ -41,7 +39,4 @@ interface EmeterApi {
         @Query("time") time: String,
     ): Response<ParametersItem>
 
-    //https://ev.e-meter.biz/deviation.
-    // asdlf?
-    // code=1454366173&notlast=1&action=data&date=2022-05-23&ids=41&time=1653288441658
 }
